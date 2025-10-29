@@ -160,6 +160,16 @@ def main():
     det_c2 = t1_sym * t2_sym * t3_sym
     mags_c2 = [sympy.sqrt(t1_sym), sympy.sqrt(t3_sym)]
     search_for_solution("Case 2", p_k_c2_expected, det_c2, mags_c2, k_vec)
+    
+    # --- Case 3: t1 = t, t2 = c2 * t, t3 = c3 * t ---
+    t, c2, c3 = sympy.symbols('tau c2 c3', positive=True)
+    t1_sym = t
+    t2_sym = c2 * t
+    t3_sym = c3 * t
+    p_k_c3_expected = principal_polynomial(k_vec, t1_sym, t2_sym, t3_sym)
+    det_c3 = t1_sym * t2_sym * t3_sym
+    mags_c3 = [sympy.sqrt(t1_sym), sympy.sqrt(t2_sym)]
+    search_for_solution("Case 3", p_k_c3_expected, det_c3, mags_c3, k_vec)
 
 if __name__ == "__main__":
     main()
