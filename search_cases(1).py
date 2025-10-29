@@ -145,12 +145,21 @@ def main():
 
     
     # --- Case 1: t1=t, t2=t3=1 ---
-    t1_sym = sympy.symbols('tau1', positive=True)
-    p_k_c1_expected = principal_polynomial(k_vec, t1_sym, 1, 1)
-    det_c1 = t1_sym
-    mags_c1 = [sympy.sqrt(t1_sym), 1]
-    search_for_solution("Case 1", p_k_c1_expected, det_c1, mags_c1, k_vec)
+    #t1_sym = sympy.symbols('tau1', positive=True)
+    #p_k_c1_expected = principal_polynomial(k_vec, t1_sym, 1, 1)
+    #det_c1 = t1_sym
+    #mags_c1 = [sympy.sqrt(t1_sym), 1]
+    #search_for_solution("Case 1", p_k_c1_expected, det_c1, mags_c1, k_vec)
 
+    # --- Case 2: t1 = t, t2 = c * t3 ---
+    t, c = sympy.symbols('tau c', positive=True)
+    t1_sym = t
+    t3_sym = sympy.symbols('tau3', positive=True)
+    t2_sym = c * t3_sym
+    p_k_c2_expected = principal_polynomial(k_vec, t1_sym, t2_sym, t3_sym)
+    det_c2 = t1_sym * t2_sym * t3_sym
+    mags_c2 = [sympy.sqrt(t1_sym), sympy.sqrt(t3_sym)]
+    search_for_solution("Case 2", p_k_c2_expected, det_c2, mags_c2, k_vec)
 
 if __name__ == "__main__":
     main()
